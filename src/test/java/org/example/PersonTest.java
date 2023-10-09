@@ -1,19 +1,17 @@
 package org.example;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PersonTest {
 @Test public void testChangeAgeSuccessful(){
-    public Person Bob = new Person();
-    Bob.name = "Bob";
-    Bob.age = 25;
-    changeName (String newName) = "Mart";
-    Bob.changeName;
+    Person person = new Person("Bob", 25);
+    person.changeName("Mart");
+    assertEquals("Mart", person.getName());
+
 }
 @Test public void testCelebrateBirthday(){
 
-    public Person Charlie = new Person();
-    Charlie.name = "Charlie";
-    Charlie.age = 35;
-    Charlie.celebrateBirthday();
-    return getAge();
+    Person person = new Person("Charlie", 35);
+    person.celebrateBirthday();
+    assertEquals(person.getAge(), 36);
 }
 }
