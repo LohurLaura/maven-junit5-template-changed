@@ -70,6 +70,7 @@ public class MathUtilsTest {
     @ValueSource(ints = {3})
     @ParameterizedTest
     void testSquareRoot(int a){
-        Assertions.assertEquals(9,a*a,0.001);
+        int squareRoot = mathUtils.squareRoot(3);
+        Assertions.assertEquals(9,squareRoot,0.001);
     }
 }
