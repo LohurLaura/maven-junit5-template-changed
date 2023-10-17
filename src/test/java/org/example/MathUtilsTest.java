@@ -1,9 +1,16 @@
 package org.example;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class MathUtilsTest {
+    MathUtils mathUtils;
+    @BeforeEach
+    void setup(){
+        mathUtils = new MathUtils();
+    }
     @Test
     void testAddTwoPositiveIntegers(){
         MathUtils mathUtils = new MathUtils();
@@ -48,6 +55,21 @@ public class MathUtilsTest {
     void testBothArgumentsAreEqual(){
         MathUtils mathUtils = new MathUtils();
         boolean bigger = mathUtils.bigger(7,7);
-        Assertions.assertEquals(7,7);
+        Assertions.assertFalse(bigger);
+    }
+    @Test
+    void testFloatingPointDivision(){
+        float division = mathUtils.division(6.6f,2.0f);
+        Assertions.assertEquals(3.3,division,0.001);
+    }
+    @Test
+    void testFloatingPointMultiplication(){
+        float multiplication = mathUtils.multiplication(5.25f,2.0f);
+        Assertions.assertEquals (10.5,multiplication,0.001);
+    }
+    @ValueSource(ints = {3})
+    @ParameterizedTest
+    void testSquareRoot(int a){
+        Assertions.assertEquals(9,a*a,0.001);
     }
 }
