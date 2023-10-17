@@ -14,6 +14,9 @@ public float division(float a, float b){
 public float multiplication(float a, float b){
     return a*b;
 }
+public int multiplication(int a, int b){
+    return a*b;
+}
 public int squareRoot(int a){
     return a*a;
 }

@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class MathUtilsTest {
@@ -72,5 +74,19 @@ public class MathUtilsTest {
     void testSquareRoot(int a){
         int squareRoot = mathUtils.squareRoot(3);
         Assertions.assertEquals(9,squareRoot,0.001);
+    }
+    @ParameterizedTest
+    @CsvSource({"1,1,2","2,3,5","10,-3,7"})
+    void testAddWithCsvSource(int a, int b, int expected){
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.add(a,b);
+        Assertions.assertEquals(expected, result);
+    }
+    @ParameterizedTest
+    @CsvFileSource (resources="/testdata.csv")
+    void testMultiplyingTwoNumbers(int a, int b, int expected){
+        MathUtils mathUtils = new MathUtils();
+        int result = mathUtils.multiplication(a,b);
+        Assertions.assertEquals(expected,result);
     }
 }
