@@ -35,7 +35,7 @@ public class TestOrderDtoPostTests {
                 response();
 
         //Deserialization
-        String resultReceived = new Gson().fromJson(response.toString(), TestOrderDto.class);
+        String resultReceived = new Gson().fromJson(response.toString(),TestOrderDto.class);
 
         assertAll(
                 "Grouped Assertions of User",
@@ -46,6 +46,5 @@ public class TestOrderDtoPostTests {
         Assertions.assertEquals("OPEN",resultReceived.getStatus());
         Assertions.assertEquals(customerName, resultReceived.getCustomerName());
         Assertions.assertEquals(HttpStatus.SC_OK, response.getStatusCode());
-
     }
 }
