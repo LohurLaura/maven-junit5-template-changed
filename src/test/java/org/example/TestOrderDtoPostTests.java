@@ -35,16 +35,16 @@ public class TestOrderDtoPostTests {
                 response();
 
         //Deserialization
-        String resultReceived = new Gson().fromJson(response.toString(),TestOrderDto.class);
+        TestOrderDto orderReceived = new Gson().fromJson(response.asString(),TestOrderDto.class);
 
         assertAll(
-                "Grouped Assertions of User",
-                () -> assertEquals("expectedResultFirstTest", resultReceived.getComment(), "1st Assert"),
-                () -> assertEquals("expectedResultSecondTest", resultReceived.getCustomerName(), "2nd Assert")
-        );
+        "Grouped Assertions of User",
+               () -> assertEquals("This comment", orderReceived.getComment(), "1st Assert"),
+              () -> assertEquals(customerName, orderReceived.getCustomerName(), "2nd Assert")
+         );
 
-        Assertions.assertEquals("OPEN",resultReceived.getStatus());
-        Assertions.assertEquals(customerName, resultReceived.getCustomerName());
+        Assertions.assertEquals("OPEN",orderReceived.getStatus());
+        Assertions.assertEquals(customerName, orderReceived.getCustomerName());
         Assertions.assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 }

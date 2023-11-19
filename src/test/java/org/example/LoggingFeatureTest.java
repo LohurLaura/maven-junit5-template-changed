@@ -4,11 +4,14 @@ import Dto.LoggingDto;
 import Dto.TestOrderDto;
 import Helper.SetupFunctions;
 import com.google.gson.Gson;
+import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LoggingFeatureTest {
     static SetupFunctions setupFunctions;
@@ -28,7 +31,7 @@ public class LoggingFeatureTest {
 // Serialization
         String loggingDtoAsJson = new Gson().toJson(login);
 
-        given().
+        Response response = given().
                 log().
                 all().
                 header("Content-Type", "application/json").
@@ -37,8 +40,12 @@ public class LoggingFeatureTest {
                 then().
                 log().
                 all().
-                assertThat().
-                statusCode(HttpStatus.SC_OK);
+                extract().
+                response();
+                //assertThat().
+                //statusCode(HttpStatus.SC_OK);
+        Assertions.assertEquals("",response.asString());
+        Assertions.assertEquals(401,response.getStatusCode());
     }
 
     @Test

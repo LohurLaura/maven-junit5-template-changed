@@ -6,7 +6,7 @@ public class TestOrderDto {
     private String customerName;
     private String customerPhone;
     private String comment;
-    private int id;
+    private long id;
 
     public TestOrderDto(String status, int courierId, String customerName, String customerPhone, String comment, int id) {
         this.status = "OPEN";
@@ -37,7 +37,7 @@ public class TestOrderDto {
         return comment;
     }
 
-    public int getId() {
+    private long getId() {
         return id;
     }
 

@@ -15,13 +15,7 @@ public class ApiMockTest {
         TestOrderDto order = new TestOrderDto("OPEN", 5, "Name", "33333", "Comment", 2);
 
         //Dto creation with constructor by default and setters
-        TestOrderDto testOrderDtoSetter = new TestOrderDto();
-        testOrderDtoSetter.setComment("New comment");
-        testOrderDtoSetter.setCustomerName("New name");
-        testOrderDtoSetter.setCustomerPhone("44444");
-        testOrderDtoSetter.setId(5);
-        testOrderDtoSetter.setCourierId(4);
-        testOrderDtoSetter.setStatus("Also open");
+        TestOrderDto testOrderDtoSetter = new TestOrderDto("Open", 2, "Names", "11111111", "Comments", 2);
 
         //Serialization
         String testOrderDtoAsJson = new Gson().toJson(order);
@@ -38,6 +32,4 @@ public class ApiMockTest {
                 assertThat().
                 statusCode(HttpStatus.SC_OK);
     }
-
-
 }
